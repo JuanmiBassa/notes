@@ -1,0 +1,153 @@
+#notes-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#addNote-container {
+    width: 90%;
+    display: flex;
+    justify-content: end;
+    border-bottom: 2px var(--border) solid;
+}
+
+#addNote-container button {
+    margin: 30px;
+    padding: 15px;
+    background: var(--prym-blue-color);
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.note {
+    width: 300px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 40px 20px;
+    position: relative;
+}
+
+.note-title {
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
+    background-color: var(--light-white);
+    width: 100%;
+    padding: 10px 0px;
+    z-index: 2;
+}
+
+.note-title p {
+    font-weight: 800;
+    padding: 0px 10px;
+    text-align: center;
+}
+
+.note-body {
+    width: calc(100% - 30px);
+    min-height: calc(100% - 40px);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%, 0 80%);
+    background: hsl(130, 70%, 65%);
+    transform: translateY(-15px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0px 0px 5px 5px;
+    overflow: hidden;
+    padding: 5px;
+}
+
+.note-body p {
+    padding: 15px 10px 10px 10px;
+    font-size: 15px;
+    max-height: 100%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.visibility {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    left: 20px;
+    bottom: 5px;
+    border-radius: 50%;
+}
+
+.public {
+    background-color: var(--response-ok);
+}
+
+.private {
+    background-color: var(--response-bad);
+}
+
+.note-data {
+    width: calc(100% - 15px);
+    transform: translateY(-10px);
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px var(--border) solid;
+    border-radius: 5px;
+}
+
+.note-date {
+    padding-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.note-date p:nth-child(1) {
+    color: var(--secondary-text);
+    font-size: 12px;
+}
+
+.note-date p:nth-child(2) {
+    color: white;
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.note-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-buttons button {
+    margin: 0px 2px;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.note-btn {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.button-edit {
+    background-color: var(--light-white);
+}
+
+.button-share {
+    background: linear-gradient(135deg, var(--prym-lightPurple-color) 0%, var(--prym-purple-color) 100%);
+    color: var(--light-white);
+}
+
+.button-delete {
+    background: linear-gradient(135deg, var(--prym-pink-color) 0%, var(--prym-red-color) 100%);
+    color: var(--light-white);
+}

@@ -1,0 +1,106 @@
+.session-section {
+    width: 100%;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.session-form {
+    background: linear-gradient(135deg, var(--bg-light-container) 0%, var(--bg-dark-container) 100%);
+    border-radius: 10px;
+    border: 2px var(--border) solid;
+    padding: 30px 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.session-form h1 {
+    color: white;
+    font-size: 35px;
+}
+
+.session-form div {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px;
+    width: 250px;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.session-form label {
+    color: var(--secondary-text);
+}
+
+.session-form input {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--light-white);
+    border: none;
+    border-bottom: 3px var(--border) solid;
+}
+
+.session-form input:focus {
+    outline: none;
+    border-bottom: 3px var(--prym-blue-color) solid;
+}
+
+.submit-button {
+    padding: 5px 0px;
+    width: 100px;
+    background: linear-gradient(135deg, var(--prym-lightPurple-color) 0%, var(--prym-purple-color) 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.submit-button:hover {
+    filter: brightness(1.1);
+}
+
+.session-text {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--secondary-text);
+}
+
+.session-text a {
+    color: var(--prym-blue-color);
+    margin-left: 5px;
+}
+
+#dashboard-name {
+    font-size: 25px;
+    background: linear-gradient(135deg, var(--bg-dark-container) 0%, var(--bg-light-container) 100%);
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px var(--prym-cyan-color) solid;
+    transform: translateY(-60px);
+    position: absolute;
+}
+
+#logout-button {
+    padding: 5px 0px;
+    width: 100px;
+    background: linear-gradient(135deg, var(--prym-pink-color) 0%, var(--prym-red-color) 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#actionUser-container {
+    flex-direction: row;
+    justify-content: space-evenly;
+}
