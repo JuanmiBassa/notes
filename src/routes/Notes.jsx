@@ -1,12 +1,12 @@
 import '../styles/notes.css'
-import React, { useState, useEffect, useRef } from 'react';
-import { MdDeleteForever, MdEdit } from "react-icons/md";
+import { useState, useEffect, useRef } from 'react';
 import { FaPlus } from "react-icons/fa6";
-import { IoArrowRedoSharp } from "react-icons/io5";
+import Note from '../templates/Note';
 
 
 export default function Notes() {
     const isMounted = useRef(true);
+    const [listOfNotes, setListOfNotes] = useState();
 
     useEffect(() => {
         if (isMounted.current) {
@@ -28,9 +28,10 @@ export default function Notes() {
 
             if (res.status === 200) {
                 const responseData = await res.json();
+                setListOfNotes(responseData);
                 console.log(responseData);
             } else if (res.status === 401) {
-                console.log("401");
+                console.log("Error 401");
             } else {
                 console.log("error");
             }
@@ -45,35 +46,10 @@ export default function Notes() {
             <div id='addNote-container'>
                 <button><FaPlus /> CREATE NOTE</button>
             </div>
-            <div className='note'>
-                <div className='note-title'>
-                    <p>Title</p>
-                </div>
-                <div className='note-body'>
-                    <p>jfasjuifdujidfsji</p>
-                </div>
-                <div className='visibility private'></div>
-                <div className='note-data'>
-                    <div className='note-date'>
-                        <p>Last mod:</p>
-                        <p>27/08/2025</p>
-                        
-                    </div>
-                    <div className='note-buttons'>
-                        <button>
-                            <MdEdit className='note-btn button-edit '/>
-                        </button>
-
-                        <button>
-                            <IoArrowRedoSharp className='note-btn button-share '/>
-                        </button>
-
-                        <button>
-                            <MdDeleteForever className='note-btn button-delete'/>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            
+            {listOfNotes && listOfNotes.map((note, index) => (
+                <Note key={index} note={note}/>
+            ))}
 
         </section>
     )

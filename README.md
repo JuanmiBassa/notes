@@ -1,4 +1,7 @@
 # React + Vite
+# Create proyect: npx create-vite react --template react
+# Execute app: npm run dev
+# npm install react-router-dom
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
