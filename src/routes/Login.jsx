@@ -31,14 +31,14 @@ export default function Login() {
                 localStorage.setItem('username', username);
                 localStorage.setItem('token', responseData.token);
                 localStorage.setItem('expiration', responseData.expiration);
-                navigate('/');
+                navigate('/notes');
             } else if (res.status === 401) {
                 setResponseBad('Unauthorized.');
             } else {
                 setResponseBad('Unexpected error occurred.');
             }
 
-            setInterval(() => {
+            setTimeout(() => {
                 setResponseBad(null);
             }, 5000);
 

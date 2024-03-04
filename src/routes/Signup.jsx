@@ -37,7 +37,7 @@ export default function Signup() {
                 setResponseBad('Unexpected error occurred.');
             }
 
-            setInterval(() => {
+            setTimeout(() => {
                 setResponseOk(null);
                 setResponseBad(null);
             }, 5000);

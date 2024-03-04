@@ -1,0 +1,114 @@
+.dataNote-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#dataNote-buttons {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px var(--border) solid;
+    margin: 20px 0px;
+    padding: 20px 0px;
+}
+
+#dataNote-buttons button,
+#dataNote-buttons a {
+    padding: 15px 20px;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--prym-blue-color);
+}
+
+#dataNote-buttons svg {
+    font-size: 17px;
+    margin-right: 5px;
+}
+
+#dataNote-buttons h1 {
+    color: var(--light-white);
+}
+
+#dataNote-container {
+    width: 80%;
+    background: linear-gradient(135deg, var(--bg-light-container) 0%, var(--bg-dark-container) 100%);
+    border-radius: 10px;
+    border: 2px var(--border) solid;
+    padding: 20px;
+}
+
+#dataNote-container>div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#dataNote-container>div label {
+    color: var(--light-white);
+    min-width: 150px;
+}
+
+/* ADD FILE */
+#addfile-form-container {
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#addfile-button {
+    padding: 5px 0px;
+    width: 100px;
+    background: linear-gradient(45deg, var(--prym-cyan-color) 0%, var(--prym-blue-color) 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#files-container {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.file {
+    width: 250px;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--bg-light-container) 0%, var(--bg-dark-container) 100%);
+}
+
+.file-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.file-img div {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+}
+
+.file-audio {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

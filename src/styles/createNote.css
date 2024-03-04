@@ -1,0 +1,20 @@
+.style-radio-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.label-radio {
+    background: var(--light-white);
+    color: var(--bg-dark);
+    border-radius: 5px;
+    display: flex;
+    width: 45%;
+}
+
+.label-radio label {
+    color: var(--bg-dark);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}

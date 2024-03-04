@@ -24,15 +24,16 @@
   --light-white: #E8E9EB;
   --secondary-text: #d3d6d6;
 
-  --response-ok: #25f174;
-  --response-bad: #fa432b;
+  --response-ok: #23e26c;
+  --response-bad: #eb4029;
   --response-info: #33c0f8;
+
+  --warning: #ffbd09;
 }
 
 body {
   background: linear-gradient(135deg, #222A41 0%, #0C172B 100%);
   background-repeat: no-repeat;
-  width: 100vw;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -54,6 +55,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  backdrop-filter: blur(20px);
 }
 
 main {
@@ -61,11 +63,39 @@ main {
   margin-top: 60px;
 }
 
+h1 {
+  text-align: center;
+}
+
 a {
   text-decoration: none;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--bg-dark);
+}
+
+textarea {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: var(--light-white);
+  border: none;
+  border-bottom: 3px var(--border) solid;
+}
+
+textarea:focus {
+  outline: none;
+  border-bottom: 3px var(--prym-blue-color) solid;
+}
+
+select:focus {
+  outline: none;
+  border-bottom: 3px var(--prym-blue-color) solid;
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 3px var(--prym-blue-color) solid;
 }
 
 #logo {
@@ -143,4 +173,53 @@ nav ul li {
 
 .response-info {
   color: var(--response-info);
+}
+
+/* MODAL */
+.modal-response {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 50px;
+  z-index: 99;
+}
+
+.modal-ok {
+  background-color: var(--response-ok);
+}
+
+.modal-bad {
+  background-color: var(--response-bad);
+}
+
+/* ERROR PAGE */
+#error-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100vh - 60px);
+}
+
+#error-section h1 {
+  color: var(--light-white);
+  font-size: 100px;
+}
+
+#error-section p {
+  margin-top: 30px;
+  color: var(--warning);
+}
+
+#error-section a {
+  margin-top: 10px;
+  color: white;
+  background: linear-gradient(45deg, var(--prym-lightPurple-color) 0%, var(--prym-purple-color) 100%);
+  padding: 10px 15px;
+  border-radius: 5px;
 }
