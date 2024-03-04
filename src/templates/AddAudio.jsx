@@ -85,15 +85,16 @@ export default function AddAudio({ noteId, setAddingAFile, addNewFileToList }) {
 
     return (
         <>
-            <form onSubmit={submitAudio} className="session-form">
-            <div>
-                {!recording ? (
-                    <button type="button" onClick={startRecording}>Start Recording</button>
-                ) : (
-                    <button type="button" onClick={stopRecording}>Stop Recording</button>
-                )}
-            </div>
-            <audio controls src={audioUrl}></audio>
+            <form onSubmit={async () => submitAudio} method='POST' className="session-form">
+                <h1>Add a new Audio</h1>
+                <div>
+                    {!recording ? (
+                        <button type="button" onClick={startRecording}>Start Recording</button>
+                    ) : (
+                        <button type="button" onClick={stopRecording}>Stop Recording</button>
+                    )}
+                </div>
+                <audio controls src={audioUrl}></audio>
 
                 <div id="addfile-form-container" className='center-content'>
                     <button type='button' id='addfile-button' onClick={() => setAddingAFile(false)}>Close</button>

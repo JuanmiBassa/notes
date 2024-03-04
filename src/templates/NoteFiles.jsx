@@ -7,12 +7,15 @@ import { FaDownload } from "react-icons/fa6";
 
 
 const servUri = "http://localhost:8080";
+const token = localStorage.getItem('token');
 
 export default function FilesNote({ noteId }) {
     const isMounted = useRef(true)
     const [addingAFile, setAddingAFile] = useState(false)
     const [allFilesData, setAllFilesData] = useState([])
     const [isVoiceNote, setIsVoiceNote] = useState(false)
+    const [modalResponseOK, setModalResponseOK] = useState(null)
+    const [modalResponseBAD, setModalResponseBAD] = useState(null)
 
     useEffect(() => {
         if (isMounted.current) {
@@ -25,7 +28,6 @@ export default function FilesNote({ noteId }) {
 
     const getFilesNote = async () => {
         try {
-            const token = localStorage.getItem('token');
             const requestOptions = {
                 method: 'GET',
                 headers: { 'Authorization': `Bearer ${token}` }
@@ -69,6 +71,78 @@ export default function FilesNote({ noteId }) {
         setAddingAFile(false);
     };
 
+    const actionDeleteFile = async (fileId) => {
+        try {
+            const requestOptions = {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+            };
+            const res = await fetch(`http://localhost:8080/notes/${noteId}/files/${fileId}`, requestOptions);
+
+            if (res.status === 204) {
+                setModalResponseOK("File deleted successfully.");
+                removeFileFromList(fileId);
+            } else if (res.status === 401) {
+                setModalResponseBAD("Unauthorized.");
+            } else if (res.status === 404) {
+                setModalResponseBAD("File not found.");
+            } else {
+                setModalResponseBAD("Unexpected error occurred.");
+            }
+
+            setTimeout(() => {
+                setModalResponseOK(null);
+                setModalResponseBAD(null);
+            }, 3000);
+
+        } catch (error) {
+            console.error('Error when making request: ', error);
+        }
+    };
+
+    const removeFileFromList = (fileId) => {
+        setAllFilesData(prevFiles => prevFiles.filter(file => file.id !== fileId));
+    };
+
+    const downloadFile = async (fileId) => {
+        const uri = `/notes/${noteId}/files/${fileId}`;
+        try {
+            const res = await fetch(`http://localhost:8080/notes/${noteId}/files/${fileId}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+            });
+            if (res.status === 200) {
+                const blob = await res.blob();
+
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = uri.substring(uri.lastIndexOf('/') + 1);
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+
+                setModalResponseOK("Successful operation.");
+            } else if (res.status === 401) {
+                setModalResponseBAD("Unauthorized.");
+            } else if (res.status === 404) {
+                setModalResponseBAD("Note or file not found.");
+            }
+
+            setTimeout(() => {
+                setModalResponseOK(null);
+                setModalResponseBAD(null);
+            }, 3000);
+        } catch (error) {
+            console.error('Error downloading file:', error);
+        }
+    };
 
     return (
         <>
@@ -109,12 +183,24 @@ export default function FilesNote({ noteId }) {
                                 </div>
                             )}
                             <div className="options-file">
-                                <button><FaDownload />Download</button>
-                                <button><MdDeleteForever />Delete</button>
+                                <button onClick={async () => downloadFile(fileData.id)}><FaDownload />Download</button>
+                                <button onClick={async () => actionDeleteFile(fileData.id)}><MdDeleteForever />Delete</button>
                             </div>
                         </div>
                     ))}
                 </div>
+
+                {modalResponseOK != null &&
+                    <div className='modal-response modal-ok'>
+                        <p>{modalResponseOK}</p>
+                    </div>
+                }
+
+                {modalResponseBAD != null &&
+                    <div className='modal-response modal-bad'>
+                        <p>{modalResponseBAD}</p>
+                    </div>
+                }
 
             </section>
         </>
